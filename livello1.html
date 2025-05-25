@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primo livello del gioco</title>
+    <link rel="icon" type="image/x-icon" href="immagini\logoLivello1.png">
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+
+        h4 {
+            margin-top: 0;
+        }
+
+        div {
+            align-content: center;
+            text-align: center;
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        p {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 50%;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            display: inline-block;
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+        }
+
+        h6 {
+            display: inline-block;
+            font-size: 20px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        h2 {
+            text-decoration: underline;
+            margin-top: 10px;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Gioco dei dadi</h1>
+        <h4>Primo livello</h4>
+        <p>Benvenuto nel primo livello! <br> Hai appena tirato un dado a 10 facce, perciò hai ottenuto un numero da 1 a
+            10 che è riportato nel riquadro "Partita". Ora, dovrai indovinare se il valore del dado che ha tirato il tuo
+            avversario (sempre a 10 facce e per ora nascosto) sarà PIÙ ALTO o PIÙ BASSO, cliccando il relativo pulsante.
+            <br> Dopo aver fatto la tua scelta, ti verrà rivelato il dado dell'avversario.
+        </p>
+    </div>
+    <div>
+        <h2>Partita</h2>
+        <h3 id="dadoGiocatore">Il valore del tuo dado è </h3>
+        <h3 id="dadoBot">Il valore del dado del tuo avversario è nascosto</h3>
+        <h3 id="pensiChe">Pensi che il valore del dado del tuo avversario sia...</h3>
+        <input type="button" name="" id="piùAlto" value="Più alto">
+        <h6>o</h6>
+        <input type="button" name="" id="piùBasso" value="Più basso">
+    </div>
+    <script>
+        const btnPiu = document.getElementById("piùAlto");
+        const btnMeno = document.getElementById("piùBasso");
+        let valoreGiocatore = (Math.floor(Math.random() * 10) + 1);
+        let valoreBot = (Math.floor(Math.random() * 10) + 1);
+
+        sessionStorage.setItem("livello", 1);
+
+        while (valoreBot == valoreGiocatore) {
+            valoreGiocatore = (Math.floor(Math.random() * 10) + 1);
+            valoreBot = (Math.floor(Math.random() * 10) + 1);
+        }
+        console.log(valoreBot)
+        document.getElementById("dadoGiocatore").textContent += valoreGiocatore;
+
+        sessionStorage.setItem("valoreBot", valoreBot);
+
+        btnMeno.addEventListener('click', () => sceltaFatta("meno"));
+        btnPiu.addEventListener('click', () => sceltaFatta("più"));
+
+        function sceltaFatta(scelta) {
+            switch (scelta) {
+                case "meno":
+                    if (valoreBot <= valoreGiocatore) {
+                        location.href = "giusto.html"
+                    }
+                    else if (valoreBot > valoreGiocatore) {
+                        location.href = "sconfitta.html"
+                    }
+                    break
+                case "più":
+                    if (valoreBot >= valoreGiocatore) {
+                        location.href = "giusto.html"
+                    }
+                    else if (valoreBot < valoreGiocatore) {
+                        location.href = "sconfitta.html"
+                    }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondo livello del gioco</title>
+    <link rel="icon" type="image/x-icon" href="immagini\logoLivello2.png">
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+
+        h4 {
+            margin-top: 0;
+        }
+
+        div {
+            align-content: center;
+            text-align: center;
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        p {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 50%;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            display: inline-block;
+            width: 250px;
+            height: 30px;
+            font-size: 15px;
+        }
+
+        h6 {
+            display: inline-block;
+            font-size: 20px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        h2 {
+            text-decoration: underline;
+            margin-top: 10px;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Gioco dei dadi</h1>
+        <h4>Secondo livello</h4>
+        <p>Ben fatto! Sei arrivato al secondo livello! <br>
+            Adesso devi indovinare se il nuovo numero che hai tirato è COMPRESO o NON COMPRESO tra il numero precedentemente
+            estratto dall'avversario ed uno nuovo, che per ora è nascosto.
+        </p>
+    </div>
+
+    <div>
+        <h2>Partita</h2>
+        <h3 id="dadoGiocatore">Il valore del tuo dado è </h3>
+        <h3 id="vecchioDado">Il valore che l'avversario ha precedentemente ottenuto è </h3>
+        <h3>Il valore attuale del dado del tuo avversario è nascosto</h3>
+        <h3 id="pensiChe">Pensi che il valore del tuo dado sia...</h3>
+        <input type="button" name="" id="Compreso" value="Compreso tra i due numeri">
+        <h6>o</h6>
+        <input type="button" name="" id="nCompreso" value="Non compreso tra i due numeri">
+    </div>
+
+    <script>
+        const btnCompreso = document.getElementById("Compreso");
+        const btnNonCompreso = document.getElementById("nCompreso");
+
+        let valoreGiocatore = (Math.floor(Math.random() * 10) + 1);
+        let valoreNuovoBot = (Math.floor(Math.random() * 10) + 1);
+        let valoreVecchioBot = sessionStorage.getItem("valoreBot");
+
+        document.getElementById("vecchioDado").textContent += valoreVecchioBot;
+        document.getElementById("dadoGiocatore").textContent += valoreGiocatore;
+
+        while (valoreNuovoBot == valoreGiocatore || valoreVecchioBot == valoreGiocatore || valoreNuovoBot == valoreVecchioBot) {
+            valoreGiocatore = (Math.floor(Math.random() * 10) + 1);
+            valoreNuovoBot = (Math.floor(Math.random() * 10) + 1);
+        }
+        console.log(valoreNuovoBot);
+
+        btnCompreso.addEventListener('click', () => sceltaFatta("Comp"));
+        btnNonCompreso.addEventListener('click', () => sceltaFatta("nComp"));
+
+        sessionStorage.setItem("livello", 2);
+        function sceltaFatta(scelta) {
+            switch (scelta) {
+                case "nComp":
+                    let Min = Math.min(valoreVecchioBot, valoreNuovoBot);
+                    let Max = Math.max(valoreVecchioBot, valoreNuovoBot);
+
+                    if (valoreGiocatore > Min && valoreGiocatore < Max) {
+                        location.href = "sconfitta.html";
+                    } else {
+                        location.href = "giusto.html";
+                    }
+
+                    sessionStorage.setItem("valoreBot", valoreNuovoBot);
+                    break
+                case "Comp":
+                    let min = Math.min(valoreVecchioBot, valoreNuovoBot);
+                    let max = Math.max(valoreVecchioBot, valoreNuovoBot);
+
+                    if (valoreGiocatore >= min && valoreGiocatore <= max) {
+                        location.href = "giusto.html";
+                    } else {
+                        location.href = "sconfitta.html";
+                    }
+
+                    sessionStorage.setItem("valoreBot", valoreNuovoBot);
+                    break
+            }
+        }
+    </script>
+</body>
+
+</html>

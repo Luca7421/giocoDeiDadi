@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menù del gioco dei dadi</title>
+    <link rel="icon" type="image/x-icon" href="immagini\logoMenù.png">
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+        h5{
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        div {
+            align-content: center;
+            text-align: center;
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        input {
+            display: inline-block;
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Gioco dei dadi</h1>
+        <h5>di Luca Pugliese</h5>
+        <p>Premendo il pulsante "gioca" verrai portato nella pagina del gioco che, come si può intuire dal nome, è incentrato sui dadi. Per vincere dovrai superare tre livelli che ti saranno spiegati una volta raggiunti.
+        </p>
+        <input type="button" name="" id="gioca" value="Gioca">
+    </div>
+    <script>
+        let btnAvvia = document.getElementById("gioca");
+        btnAvvia.addEventListener('click', avvia);
+        function avvia() {
+            location.href = "livello1.html";
+        }
+    </script>
+</body>
+
+</html>

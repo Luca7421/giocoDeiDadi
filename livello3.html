@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terzo livello del gioco</title>
+    <link rel="icon" type="image/x-icon" href="immagini\logoLivello3.png">
+
+    <style>
+        body {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+
+        h4 {
+            margin-top: 0;
+        }
+
+        div {
+            align-content: center;
+            text-align: center;
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        p {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 50%;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            margin: 0 auto;
+            display: block;
+            width: 250px;
+            height: 30px;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        h6 {
+            display: inline-block;
+            font-size: 20px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        h2 {
+            text-decoration: underline;
+            margin: 0;
+            margin-bottom: 20px;
+            padding: 0;
+            font-size: 30px;
+        }
+
+        #scelta {
+            height: 24px;
+        }
+
+        #conferma {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Gioco dei dadi</h1>
+        <h4>Terzo livello</h4>
+        <p>Ottimo! Sei arrivato al terzo ed ultimo livello! <br>
+            Stai per vincere, tuttavia adesso arriva la parte più difficile: dovrai indovinare ESATTAMENTE il valore
+            ottenuto dal tuo avversario. <br> Ricorda che questo valore è compresto tra 1 e 10. </p>
+    </div>
+    <div>
+        <h2>Partita</h2>
+        <h4>Inserisci il valore nella casella (compreso tra 1 e 10) e clicca il pulsante per confermare.</h4>
+        <input type="number" name="" id="scelta" min="1" max="10">
+        <input type="button" name="" id="conferma" value="Conferma">
+    </div>
+
+
+    <script>
+        const valoreBot = (Math.floor(Math.random() * 10) + 1);
+        const btnConferma = document.getElementById("conferma");
+        console.log(valoreBot);
+
+        btnConferma.addEventListener('click', check)
+        sessionStorage.setItem("livello", 3);
+        function check() {
+            const guess = document.getElementById("scelta").value;
+            if (guess == valoreBot)
+                location.href = "giusto.html";
+            else
+                location.href = "sconfitta.html";
+            sessionStorage.setItem("valoreBot", valoreBot);
+        }
+
+    </script>
+</body>
+
+</html>

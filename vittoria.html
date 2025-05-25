@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hai vinto!!</title>
+    <link rel="icon" type="image/x-icon" href="immagini\vittoria.png">
+    <style>
+        body {
+            background-color: rgb(205, 164, 52);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        div {
+            vertical-align: middle;
+            margin: 0 auto;
+            text-align: center;
+            background-color: wheat;
+            padding: 20px;
+        }
+
+        input {
+            display: inline-block;
+            width: 200px;
+            height: 30px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Hai vinto!</h1>
+        <p id="info">Complimenti! Hai completato il gioco! <br> Il valore del dado dell'avversario era </p>
+        <input type="button" id="ricomincia" value="Rigioca">
+    </div>
+    <script>
+        const btnRicomincia = document.getElementById("ricomincia");
+        const valore = sessionStorage.getItem("valoreBot")
+        document.getElementById("info").textContent += valore;
+
+        btnRicomincia.addEventListener('click',() => ritorna())
+        function ritorna(){
+            location.href = "menu.html";
+        }
+    </script>
+</body>
+</html>

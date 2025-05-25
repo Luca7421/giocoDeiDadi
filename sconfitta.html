@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hai perso!</title>
+    <link rel="icon" type="image/x-icon" href="immagini\sconfitta.png">
+    <style>
+        body {
+            background-color: darkred;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        div {
+            vertical-align: middle;
+            margin: 0 auto;
+            text-align: center;
+            background-color: wheat;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+        h5{
+            margin-top: 0;
+        }
+
+        input {
+            display: inline-block;
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Hai perso!</h1>
+        <p id="info">Il valore del dado dell'avversario era </p>
+        <input type="button" id="ricomincia" value="Riprova">
+    </div>
+    <script>
+        const btnRicomincia = document.getElementById("ricomincia");
+        const valore = sessionStorage.getItem("valoreBot")
+        document.getElementById("info").textContent += valore;
+
+        btnRicomincia.addEventListener('click',() => ritorna())
+        function ritorna(){
+            location.href = "menu.html";
+        }
+    </script>
+</body>
+
+</html>
